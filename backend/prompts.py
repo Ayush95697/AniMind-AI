@@ -1,18 +1,7 @@
-# prompts.py
-"""
-Utilities for building LLM-ready messages based on:
-- selected character (goku / vegeta / itachi)
-- conversation history
-- current user message
-"""
+# backend/prompts.py
 
 from typing import List, Dict, Any
-
-# Support both "backend.characters" and plain "characters" import styles
-try:
-    from .characters import CHARACTERS  # type: ignore
-except ImportError:
-    from characters import CHARACTERS  # type: ignore
+from backend.characters import CHARACTERS  # <-- this is the ONLY import you need from characters.py
 
 
 def _get_character_config(character_id: str) -> Dict[str, Any]:
@@ -25,7 +14,7 @@ def _get_character_config(character_id: str) -> Dict[str, Any]:
     return CHARACTERS[character_id]
 
 
-def _trim_history(history: List[Dict[str, str]], max_messages: int = 20) -> List[Dict[str, str]]:
+def _trim_history(history: List[Dict[str, str]] | None, max_messages: int = 20) -> List[Dict[str, str]]:
     """
     Limit the number of past messages to avoid very long prompts.
     Keeps the most recent `max_messages` entries.
