@@ -1,5 +1,3 @@
-# backend/main.py
-
 import os
 from typing import Dict, List
 
@@ -13,11 +11,8 @@ from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 from backend.prompts import build_chat_messages
 from backend.characters import CHARACTERS
 
-
-
 # 1) Load environment variables from .env (for GOOGLE_API_KEY, etc.)
 load_dotenv()
-
 
 # 2) Create FastAPI app
 app = FastAPI(
@@ -25,7 +20,6 @@ app = FastAPI(
     description="Anime character chatbot backend (Goku, Vegeta, Itachi)",
     version="0.1.0",
 )
-
 
 # 3) Global LLM instance (lazy-initialized) and in-memory conversation store
 llm = None  # will hold ChatGoogleGenerativeAI instance
@@ -36,14 +30,14 @@ conversations: Dict[str, List[Dict[str, str]]] = {}
 
 # 4) Request/Response models for the /chat endpoint
 class ChatRequest(BaseModel):
-    session_id: str     # unique id per user/session (frontend will manage)
-    character: str      # "goku", "vegeta", "itachi"
-    user_message: str   # latest user message text
+    session_id: str  # unique id per user/session (frontend will manage)
+    character: str  # "goku", "vegeta", "itachi"
+    user_message: str  # latest user message text
 
 
 class ChatResponse(BaseModel):
-    character: str      # echoes which character replied
-    bot_message: str    # model's reply text
+    character: str  # echoes which character replied
+    bot_message: str  # model's reply text
 
 
 # 5) Helper: create or return the global LLM instance
@@ -157,3 +151,4 @@ def chat(request: ChatRequest) -> ChatResponse:
         character=request.character,
         bot_message=bot_reply,
     )
+
