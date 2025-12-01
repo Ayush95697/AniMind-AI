@@ -1,0 +1,169 @@
+:root {
+    --theme-primary: #f97316;
+    /* Default Goku */
+    --theme-accent: #facc15;
+    --theme-bg: #fff7ed;
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.5);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background 0.5s ease;
+}
+
+/* Main Container */
+#main-container {
+    display: flex;
+    gap: 25px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    height: 95vh;
+}
+
+/* Left Panel - Glassmorphism */
+#left-panel {
+    flex: 1;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+#left-panel h2 {
+    color: var(--theme-primary);
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Character Selector */
+#character-selector {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+/* Character Card */
+#character-card {
+    text-align: center;
+    width: 100%;
+}
+
+#char-avatar {
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border: 6px solid var(--theme-accent);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+#char-avatar:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+#character-card h3 {
+    font-size: 2em;
+    color: var(--theme-primary);
+    margin-bottom: 10px;
+}
+
+#character-card p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #4b5563;
+}
+
+/* Right Panel */
+#right-panel {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Chatbot Area */
+#chatbot {
+    flex-grow: 1;
+    border-radius: 25px;
+    border: none;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* Chat Bubbles */
+.bot {
+    background: linear-gradient(135deg, var(--theme-primary), var(--theme-accent));
+    color: white;
+    border-radius: 20px 20px 20px 5px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.user {
+    background: #e5e7eb;
+    color: #1f2937;
+    border-radius: 20px 20px 5px 20px;
+    padding: 15px;
+    border: none;
+}
+
+/* Input Area */
+#input-area {
+    background: white;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#msg-input textarea {
+    border: 2px solid #e5e7eb;
+    border-radius: 15px;
+    padding: 12px;
+    transition: border-color 0.3s ease;
+    background: #f9fafb;
+}
+
+#msg-input textarea:focus {
+    border-color: var(--theme-primary);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(var(--theme-primary), 0.2);
+}
+
+#send-btn {
+    background: var(--theme-primary);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 0 30px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#send-btn:hover {
+    background: var(--theme-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+#send-btn:active {
+    transform: translateY(0);
+}
