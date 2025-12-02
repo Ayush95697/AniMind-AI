@@ -6,25 +6,28 @@ import os
 # --- Configuration ---
 BACKEND_URL = "http://127.0.0.1:8000/chat"
 
+# Get the directory of this file for asset paths
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # Character Data (Mirrored from backend for display purposes)
 CHARACTERS = {
     "goku": {
         "name": "Goku",
-        "avatar": "assets/goku.png",
+        "avatar": os.path.join(BASE_DIR, "assets", "goku.png"),
         "bio": "A simple, battle-loving Saiyan who lives for training and improvement.",
         "theme_color": "#f97316",
         "accent_color": "#facc15"
     },
     "vegeta": {
         "name": "Vegeta",
-        "avatar": "assets/vegeta.png",
+        "avatar": os.path.join(BASE_DIR, "assets", "vegeta.png"),
         "bio": "The proud Saiyan prince who despises weakness and competition with Goku.",
         "theme_color": "#4c1d95",
         "accent_color": "#7c3aed"
     },
     "itachi": {
         "name": "Itachi Uchiha",
-        "avatar": "assets/itachi.png",
+        "avatar": os.path.join(BASE_DIR, "assets", "itachi.png"),
         "bio": "A wise, calm shinobi who speaks with emotional intelligence and reflective depth.",
         "theme_color": "#111827",
         "accent_color": "#6b7280"
@@ -86,7 +89,10 @@ def update_character_info(character_key):
 # --- Layout ---
 def load_css():
     try:
-        with open("custom.css", "r") as f:
+        # Get the directory of this file
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        css_path = os.path.join(current_dir, "custom.css")
+        with open(css_path, "r") as f:
             return f"<style>{f.read()}</style>"
     except Exception as e:
         print(f"Error loading CSS: {e}")
