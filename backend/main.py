@@ -2,6 +2,7 @@ import os
 from typing import Dict, List
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
@@ -19,6 +20,15 @@ app = FastAPI(
     title="AniMind Backend",
     description="Anime character chatbot backend (Goku, Vegeta, Itachi)",
     version="0.1.0",
+)
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # 3) Global LLM instance (lazy-initialized) and in-memory conversation store
@@ -53,6 +63,7 @@ def get_llm() -> ChatGoogleGenerativeAI:
 
     # Make sure API key is available
     api_key = os.getenv("GOOGLE_API_KEY")
+
     if not api_key:
         raise RuntimeError(
             "GOOGLE_API_KEY is not set. "

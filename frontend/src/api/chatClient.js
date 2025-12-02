@@ -2,7 +2,7 @@
  * API client for AniMind chatbot backend
  */
 
-const API_BASE_URL = '';
+const API_BASE_URL = 'http://127.0.0.1:8000';
 
 /**
  * Send a message to the chatbot
