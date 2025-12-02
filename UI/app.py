@@ -86,7 +86,7 @@ def update_character_info(character_key):
 # --- Layout ---
 def load_css():
     try:
-        with open("UI/custom.css", "r") as f:
+        with open("custom.css", "r") as f:
             return f"<style>{f.read()}</style>"
     except Exception as e:
         print(f"Error loading CSS: {e}")
