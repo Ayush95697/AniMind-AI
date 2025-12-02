@@ -1,0 +1,94 @@
+/* Theme CSS Variables for AniMind Characters */
+
+:root {
+    /* Default theme (Goku) */
+    --primary-color: #ff8c00;
+    --primary-light: #ffa500;
+    --primary-dark: #ff6b00;
+    --accent-color: #ffd700;
+    --bg-gradient-1: #ff8c00;
+    --bg-gradient-2: #ffa500;
+    --message-bg: rgba(255, 140, 0, 0.15);
+    --message-border: rgba(255, 140, 0, 0.3);
+}
+
+/* Goku Theme - Energetic Orange/Yellow */
+[data-theme="goku"] {
+    --primary-color: #ff8c00;
+    --primary-light: #ffa500;
+    --primary-dark: #ff6b00;
+    --accent-color: #ffd700;
+    --bg-gradient-1: #ff8c00;
+    --bg-gradient-2: #ffa500;
+    --message-bg: rgba(255, 140, 0, 0.15);
+    --message-border: rgba(255, 140, 0, 0.3);
+}
+
+/* Vegeta Theme - Powerful Dark Blue/Purple */
+[data-theme="vegeta"] {
+    --primary-color: #4a148c;
+    --primary-light: #6a1b9a;
+    --primary-dark: #38006b;
+    --accent-color: #7b1fa2;
+    --bg-gradient-1: #1a237e;
+    --bg-gradient-2: #4a148c;
+    --message-bg: rgba(74, 20, 140, 0.15);
+    --message-border: rgba(74, 20, 140, 0.3);
+}
+
+/* Itachi Theme - Calm Deep Red/Black */
+[data-theme="itachi"] {
+    --primary-color: #b71c1c;
+    --primary-light: #d32f2f;
+    --primary-dark: #8b0000;
+    --accent-color: #c62828;
+    --bg-gradient-1: #212121;
+    --bg-gradient-2: #b71c1c;
+    --message-bg: rgba(183, 28, 28, 0.15);
+    --message-border: rgba(183, 28, 28, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.slide-in {
+    animation: slideIn 0.4s ease-out;
+}
