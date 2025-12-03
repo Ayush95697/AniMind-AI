@@ -2,6 +2,7 @@ import os
 from typing import Dict, List
 
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
@@ -9,8 +10,8 @@ from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 
-from backend.prompts import build_chat_messages
-from backend.characters import CHARACTERS
+from prompts import build_chat_messages
+from characters import CHARACTERS
 
 # 1) Load environment variables from .env (for GOOGLE_API_KEY, etc.)
 load_dotenv()
@@ -128,7 +129,7 @@ def root():
 
 # 8) Main chat endpoint
 @app.post("/chat", response_model=ChatResponse)
-def chat(request: ChatRequest) -> ChatResponse:
+def chat(request: ChatRequest):
     """
     Main endpoint for AniMind.
 
@@ -139,27 +140,45 @@ def chat(request: ChatRequest) -> ChatResponse:
     4. Update history.
     5. Return reply to caller.
     """
+    try:
+        # 1) Get or create conversation history
+        history = conversations.setdefault(request.session_id, [])
 
-    # 1) Get or create conversation history
-    history = conversations.setdefault(request.session_id, [])
+        # 2) Build full message list (system + history + current user)
+        messages = build_chat_messages(
+            character_id=request.character,
+            user_message=request.user_message,
+            history=history,
+        )
 
-    # 2) Build full message list (system + history + current user)
-    messages = build_chat_messages(
-        character_id=request.character,
-        user_message=request.user_message,
-        history=history,
-    )
+        # 3) Call LLM
+        bot_reply = call_llm_with_messages(messages)
 
-    # 3) Call LLM
-    bot_reply = call_llm_with_messages(messages)
+        # 4) Update history (so future calls have context)
+        history.append({"role": "user", "content": request.user_message})
+        history.append({"role": "assistant", "content": bot_reply})
 
-    # 4) Update history (so future calls have context)
-    history.append({"role": "user", "content": request.user_message})
-    history.append({"role": "assistant", "content": bot_reply})
-
-    # 5) Return response
-    return ChatResponse(
-        character=request.character,
-        bot_message=bot_reply,
-    )
+        # 5) Return response
+        return ChatResponse(
+            character=request.character,
+            bot_message=bot_reply,
+        )
+    
+    except RuntimeError as e:
+        # Handle API key errors
+        print(f"Runtime error in /chat: {str(e)}")
+        return JSONResponse(
+            status_code=500,
+            content={"error": f"Configuration error: {str(e)}"}
+        )
+    
+    except Exception as e:
+        # Handle all other errors
+        print(f"Error in /chat endpoint: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return JSONResponse(
+            status_code=500,
+            content={"error": f"An error occurred: {str(e)}"}
+        )
 

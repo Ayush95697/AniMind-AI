@@ -1,7 +1,7 @@
 # backend/prompts.py
 
 from typing import List, Dict, Any
-from backend.characters import CHARACTERS  # <-- this is the ONLY import you need from characters.py
+from characters import CHARACTERS  # <-- this is the ONLY import you need from characters.py
 
 
 def _get_character_config(character_id: str) -> Dict[str, Any]:
