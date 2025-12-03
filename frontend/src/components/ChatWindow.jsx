@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import '../styles/animations.css';
 
 function ChatWindow({ messages, isLoading, selectedCharacter }) {
     const messagesEndRef = useRef(null);
@@ -11,8 +12,29 @@ function ChatWindow({ messages, isLoading, selectedCharacter }) {
         scrollToBottom();
     }, [messages, isLoading]);
 
+    // Generate particles
+    const renderParticles = () => {
+        return Array.from({ length: 15 }).map((_, i) => (
+            <div
+                key={i}
+                className={`particle ${i % 3 === 0 ? 'large' : ''}`}
+                style={{
+                    left: `${Math.random() * 100}%`,
+                    '--float-x': `${(Math.random() - 0.5) * 200}px`,
+                    '--float-y': `${-700 - Math.random() * 200}px`,
+                    animationDelay: `${Math.random() * 5}s`
+                }}
+            />
+        ));
+    };
+
     return (
         <div className="chat-container">
+            {/* Floating particles container */}
+            <div className="particles-container">
+                {renderParticles()}
+            </div>
+
             <div className="chat-header">
                 <h1>AniMind Chat</h1>
             </div>
@@ -38,10 +60,10 @@ function ChatWindow({ messages, isLoading, selectedCharacter }) {
                 {isLoading && (
                     <div className="message bot">
                         <div className="message-bubble">
-                            <div className="loading-indicator">
-                                <div className="loading-dot"></div>
-                                <div className="loading-dot"></div>
-                                <div className="loading-dot"></div>
+                            <div className="typing-indicator">
+                                <div className="typing-dot"></div>
+                                <div className="typing-dot"></div>
+                                <div className="typing-dot"></div>
                             </div>
                         </div>
                     </div>

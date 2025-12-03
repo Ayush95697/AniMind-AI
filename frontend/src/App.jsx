@@ -5,9 +5,11 @@ import MessageInput from './components/MessageInput';
 import { sendMessage } from './api/chatClient';
 import './styles/theme.css';
 import './styles/app.css';
+import './styles/chat-enhancements.css';
+import './styles/sidebar-components.css';
 
 function App() {
-    const [selectedCharacter, setSelectedCharacter] = useState('goku');
+    const [selectedCharacter, setSelectedCharacter] = useState(null);
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [sessionId] = useState(() => crypto.randomUUID());
@@ -44,17 +46,19 @@ function App() {
                 selectedCharacter={selectedCharacter}
                 onSelectCharacter={setSelectedCharacter}
             />
-            <div className="right-column" style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-                <ChatWindow
-                    messages={messages}
-                    isLoading={isLoading}
-                    selectedCharacter={selectedCharacter}
-                />
-                <MessageInput
-                    onSendMessage={handleSendMessage}
-                    isLoading={isLoading}
-                />
-            </div>
+            {selectedCharacter && (
+                <div className="right-column" style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+                    <ChatWindow
+                        messages={messages}
+                        isLoading={isLoading}
+                        selectedCharacter={selectedCharacter}
+                    />
+                    <MessageInput
+                        onSendMessage={handleSendMessage}
+                        isLoading={isLoading}
+                    />
+                </div>
+            )}
         </div>
     );
 }

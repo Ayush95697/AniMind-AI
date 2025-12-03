@@ -1,0 +1,229 @@
+/* Character Profile Card Styles */
+.character-selector.minimal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.sidebar-top {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+.character-profile-card {
+    margin-top: 20px;
+    background: rgba(30, 30, 50, 0.7);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.character-profile-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.profile-card-header {
+    background: rgba(20, 20, 40, 0.8);
+    padding: 8px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+}
+
+.profile-avatar-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(20, 20, 40, 0.4);
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(var(--primary-color), 0.3);
+}
+
+.profile-info {
+    padding: 20px 15px;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+    color: #fff;
+}
+
+.profile-title {
+    font-size: 14px;
+    text-align: center;
+    color: var(--primary-color);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.profile-details {
+    margin-top: 15px;
+}
+
+.profile-section {
+    margin-bottom: 15px;
+}
+
+.profile-section h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.profile-section p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+}
+
+.profile-strengths {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-strengths li {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 6px 0;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.4;
+}
+
+.profile-strengths li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 14px;
+}
+
+.profile-quote {
+    margin-top: 15px;
+    padding: 12px;
+    background: rgba(20, 20, 40, 0.5);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 4px;
+    position: relative;
+}
+
+.quote-icon {
+    position: absolute;
+    top: -5px;
+    left: 8px;
+    font-size: 40px;
+    color: var(--primary-color);
+    opacity: 0.3;
+    font-family: Georgia, serif;
+}
+
+.profile-quote p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    line-height: 1.6;
+    margin: 0;
+    padding-left: 20px;
+}
+
+/* Developer Info Styles */
+.developer-info {
+    margin-top: auto;
+    padding: 15px 20px;
+    background: rgba(20, 20, 40, 0.6);
+}
+
+.developer-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    margin-bottom: 15px;
+}
+
+.developer-content {
+    text-align: center;
+}
+
+.developer-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 4px;
+}
+
+.developer-title {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 3px;
+    font-style: italic;
+}
+
+.developer-subtitle {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 12px;
+}
+
+.developer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.developer-link {
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.developer-link:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.developer-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Scrollbar for sidebar-top */
+.sidebar-top::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-top::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-top::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.sidebar-top::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-light);
+}

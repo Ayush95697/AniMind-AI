@@ -1,0 +1,57 @@
+/* Enhanced Chat Window with Character Backgrounds */
+
+/* Update chat-container to support background */
+.chat-container {
+    position: relative !important;
+    overflow: hidden !important;
+    background: rgba(15, 15, 30, 0.9) !important;
+}
+
+/* Character-themed backgrounds */
+.chat-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    z-index: 0;
+    animation: backgroundPulse 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+[data-theme="goku"] .chat-container::before {
+    background-image: url('/backgrounds/goku-bg.png');
+}
+
+[data-theme="vegeta"] .chat-container::before {
+    background-image: url('/backgrounds/vegeta-bg.png');
+}
+
+[data-theme="itachi"] .chat-container::before {
+    background-image: url('/backgrounds/itachi-bg.png');
+}
+
+/* Ensure layering for chat elements */
+.chat-header {
+    position: relative;
+    z-index: 2;
+}
+
+.chat-messages {
+    position: relative;
+    z-index: 2;
+}
+
+.message {
+    animation: messageSlideIn 0.4s ease-out !important;
+}
+
+.message-input-container {
+    position: relative;
+    z-index: 2;
+}
