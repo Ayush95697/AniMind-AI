@@ -8,7 +8,7 @@ import './styles/theme.css';
 import './styles/app.css';
 import './styles/chat-enhancements.css';
 import './styles/sidebar-components.css';
-import './styles/voice.css';
+import './styles/sound.css';
 
 function App() {
     const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -16,9 +16,9 @@ function App() {
     const [isLoading, setIsLoading] = useState(false);
     const [sessionId] = useState(() => crypto.randomUUID());
 
-    // Voice and animation settings (persisted in localStorage)
-    const [voiceEnabled, setVoiceEnabled] = usePersistentState('animind-voice-enabled', false);
-    const [voiceVolume, setVoiceVolume] = usePersistentState('animind-voice-volume', 1.0);
+    // Sound and animation settings (persisted in localStorage)
+    const [soundEnabled, setSoundEnabled] = usePersistentState('animind-sound-enabled', true);
+    const [soundVolume, setSoundVolume] = usePersistentState('animind-sound-volume', 0.7);
     const [animationsEnabled, setAnimationsEnabled] = usePersistentState('animind-animations-enabled', true);
 
     // Update theme when character changes
@@ -52,10 +52,10 @@ function App() {
             <CharacterSelector
                 selectedCharacter={selectedCharacter}
                 onSelectCharacter={setSelectedCharacter}
-                voiceEnabled={voiceEnabled}
-                voiceVolume={voiceVolume}
-                onVoiceChange={setVoiceEnabled}
-                onVolumeChange={setVoiceVolume}
+                soundEnabled={soundEnabled}
+                soundVolume={soundVolume}
+                onSoundChange={setSoundEnabled}
+                onVolumeChange={setSoundVolume}
             />
             {selectedCharacter && (
                 <div className="right-column" style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
