@@ -282,3 +282,355 @@
     height: 8px;
     animation-duration: 20s;
 }
+
+/* ===================================================================
+   MOOD-BASED AVATAR ANIMATIONS
+   ================================================================ */
+
+/* Base Avatar Styles */
+.avatar {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.avatar--small {
+    width: 50px;
+    height: 50px;
+}
+
+.avatar--medium {
+    width: 80px;
+    height: 80px;
+}
+
+.avatar--large {
+    width: 120px;
+    height: 120px;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.avatar-mood-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Mood Animation Keyframes */
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px var(--primary-color, #f59e0b);
+        transform: scale(1);
+    }
+
+    50% {
+        box-shadow: 0 0 40px var(--primary-color, #f59e0b);
+        transform: scale(1.05);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes softFade {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes sharinganRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes sparks {
+    0% {
+        box-shadow:
+            0 0 10px rgba(255, 200, 0, 0.5),
+            0 0 20px rgba(255, 200, 0, 0.3);
+    }
+
+    50% {
+        box-shadow:
+            0 0 30px rgba(255, 200, 0, 0.8),
+            0 0 50px rgba(255, 200, 0, 0.5),
+            0 0 70px rgba(255, 200, 0, 0.3);
+    }
+
+    100% {
+        box-shadow:
+            0 0 10px rgba(255, 200, 0, 0.5),
+            0 0 20px rgba(255, 200, 0, 0.3);
+    }
+}
+
+/* ===================================================================
+   GOKU MOOD ANIMATIONS
+   ================================================================ */
+
+/* Goku - Powerup (excited) */
+.goku-powerup {
+    animation: sparks 1.5s ease-in-out;
+    box-shadow: 0 0 40px rgba(250, 180, 20, 0.6);
+}
+
+.goku-powerup .avatar-mood-overlay {
+    opacity: 0.3;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 70%);
+    animation: pulseGlow 1.2s infinite;
+}
+
+/* Goku - Happy (positive) */
+.goku-happy {
+    animation: pulseGlow 2s ease-in-out;
+}
+
+.goku-happy .avatar-mood-overlay {
+    opacity: 0.2;
+    background: radial-gradient(circle, rgba(255, 200, 100, 0.3) 0%, transparent 70%);
+}
+
+/* Goku - Idle (neutral) - no extra styling needed */
+
+/* Goku - Concerned (negative) */
+.goku-concerned .avatar-mood-overlay {
+    opacity: 0.2;
+    background: rgba(100, 100, 150, 0.2);
+}
+
+/* Goku - Intense (angry) */
+.goku-intense {
+    animation: shake 0.5s;
+    box-shadow: 0 0 30px rgba(255, 100, 0, 0.5);
+}
+
+/* Goku - Quiet (sad) */
+.goku-quiet {
+    animation: softFade 3s ease-in-out;
+}
+
+.goku-quiet .avatar-mood-overlay {
+    opacity: 0.3;
+    background: rgba(100, 150, 200, 0.2);
+}
+
+/* ===================================================================
+   VEGETA MOOD ANIMATIONS
+   ================================================================ */
+
+/* Vegeta - Pride (excited) */
+.vegeta-pride {
+    animation: pulseGlow 1.5s ease-in-out;
+    box-shadow: 0 0 35px rgba(138, 43, 226, 0.6);
+}
+
+.vegeta-pride .avatar-mood-overlay {
+    opacity: 0.25;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.3) 0%, transparent 70%);
+}
+
+/* Vegeta - Smirk (positive) */
+.vegeta-smirk {
+    animation: pulseGlow 2.5s ease-in-out;
+}
+
+/* Vegeta - Idle (neutral) - no extra styling needed */
+
+/* Vegeta - Disdain (negative) */
+.vegeta-disdain .avatar-mood-overlay {
+    opacity: 0.15;
+    background: rgba(100, 0, 100, 0.15);
+}
+
+/* Vegeta - Rage (angry) */
+.vegeta-rage {
+    animation: shake 0.4s, sparks 1s;
+    box-shadow: 0 0 40px rgba(120, 0, 200, 0.8);
+    border: 2px solid rgba(138, 43, 226, 0.6);
+}
+
+.vegeta-rage .avatar-mood-overlay {
+    opacity: 0.4;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.5) 0%, transparent 70%);
+    animation: pulseGlow 0.8s infinite;
+}
+
+/* Vegeta - Stern (sad) */
+.vegeta-stern {
+    animation: softFade 3s ease-in-out;
+}
+
+.vegeta-stern .avatar-mood-overlay {
+    opacity: 0.2;
+    background: rgba(80, 80, 120, 0.2);
+}
+
+/* ===================================================================
+   ITACHI MOOD ANIMATIONS
+   ================================================================ */
+
+/* Itachi - Determined (excited) */
+.itachi-determined {
+    animation: pulseGlow 2s ease-in-out;
+    box-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+}
+
+.itachi-determined .avatar-mood-overlay {
+    opacity: 0.2;
+    background: radial-gradient(circle, rgba(220, 38, 38, 0.3) 0%, transparent 70%);
+}
+
+/* Itachi - Calm (positive) */
+.itachi-calm {
+    animation: softFade 4s ease-in-out;
+}
+
+/* Itachi - Idle (neutral) - no extra styling needed */
+
+/* Itachi - Concern (negative) */
+.itachi-concern .avatar-mood-overlay {
+    opacity: 0.2;
+    background: rgba(100, 100, 100, 0.2);
+}
+
+/* Itachi - Sharingan (angry) */
+.itachi-sharingan {
+    animation: pulseGlow 1.2s infinite;
+    box-shadow: 0 0 40px rgba(220, 38, 38, 0.8);
+}
+
+.itachi-sharingan .avatar-mood-overlay {
+    opacity: 0.4;
+    background: radial-gradient(circle, rgba(220, 38, 38, 0.6) 0%, transparent 70%);
+    animation: sharinganRotate 4s linear infinite;
+}
+
+/* Itachi - Sorrow (sad) */
+.itachi-sorrow {
+    animation: softFade 4s ease-in-out;
+}
+
+.itachi-sorrow .avatar-mood-overlay {
+    opacity: 0.3;
+    background: rgba(60, 60, 80, 0.3);
+}
+
+.itachi-sorrow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    pointer-events: none;
+    animation: softFade 5s ease-in-out infinite;
+}
+
+/* ===================================================================
+   SPEAKING STATE ANIMATION
+   ================================================================ */
+
+.avatar--speaking {
+    animation: speakingPulse 1s ease-in-out infinite;
+}
+
+.avatar-speaking-indicator {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 24px;
+    height: 24px;
+    background: var(--primary-color, #f59e0b);
+    border-radius: 50%;
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.speaking-pulse {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
+    animation: speakingDot 0.8s ease-in-out infinite;
+}
+
+@keyframes speakingPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes speakingDot {
+
+    0%,
+    100% {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}

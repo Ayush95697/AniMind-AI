@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import CharacterProfileCard from './CharacterProfileCard';
 import DeveloperInfo from './DeveloperInfo';
+import VoiceToggle from './VoiceToggle';
 import { characters } from '../data/characters';
+import { playBrowserVoice, VOICE_LINES } from '../utils/voice';
 import '../styles/animations.css';
 
-function CharacterSelector({ selectedCharacter, onSelectCharacter }) {
+function CharacterSelector({
+    selectedCharacter,
+    onSelectCharacter,
+    voiceEnabled,
+    voiceVolume,
+    onVoiceChange,
+    onVolumeChange
+}) {
     const [showCards, setShowCards] = useState(false);
     const [isSelecting, setIsSelecting] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
+    const [voiceCaption, setVoiceCaption] = useState(null);
 
     // Trigger entry animation on mount
     useEffect(() => {
@@ -15,11 +25,33 @@ function CharacterSelector({ selectedCharacter, onSelectCharacter }) {
         return () => clearTimeout(timer);
     }, []);
 
+    // Show voice caption toast
+    const showVoiceCaption = (text) => {
+        setVoiceCaption(text);
+        setTimeout(() => {
+            setVoiceCaption(null);
+        }, 3000);
+    };
+
+    // Play voice and show caption when character is selected
+    const playCharacterVoice = async (characterId) => {
+        if (voiceEnabled) {
+            const voiceLine = VOICE_LINES[characterId];
+            if (voiceLine) {
+                showVoiceCaption(voiceLine);
+                await playBrowserVoice(characterId, { enabled: voiceEnabled, volume: voiceVolume });
+            }
+        }
+    };
+
     const handleCardClick = (characterId) => {
         if (isSelecting || selectedCharacter) return;
 
         setIsSelecting(true);
         setSelectedCard(characterId);
+
+        // Play voice immediately on click
+        playCharacterVoice(characterId);
 
         // Wait for exit animation before notifying parent
         setTimeout(() => {
@@ -35,6 +67,12 @@ function CharacterSelector({ selectedCharacter, onSelectCharacter }) {
         return (
             <div className="character-selector minimal">
                 <div className="sidebar-top">
+                    {/* Voice Toggle Control */}
+                    <VoiceToggle
+                        onVoiceChange={onVoiceChange}
+                        onVolumeChange={onVolumeChange}
+                    />
+
                     <div className="selected-character-header">
                         <img
                             src={currentCharacter?.image}
@@ -51,6 +89,7 @@ function CharacterSelector({ selectedCharacter, onSelectCharacter }) {
                                 className="mini-character-card"
                                 onClick={() => {
                                     setIsSelecting(true);
+                                    playCharacterVoice(character.id);
                                     setTimeout(() => {
                                         onSelectCharacter(character.id);
                                         setIsSelecting(false);
@@ -67,6 +106,11 @@ function CharacterSelector({ selectedCharacter, onSelectCharacter }) {
                 </div>
 
                 <DeveloperInfo />
+
+                {/* Voice Caption Toast */}
+                {voiceCaption && (
+                    <div className="voice-caption">{voiceCaption}</div>
+                )}
             </div>
         );
     }

@@ -1,8 +1,12 @@
 import React, { useEffect, useRef } from 'react';
+import CharacterAvatar from './CharacterAvatar';
+import useAvatarMood from '../hooks/useAvatarMood';
+import { detectMood } from '../utils/mood';
 import '../styles/animations.css';
 
-function ChatWindow({ messages, isLoading, selectedCharacter }) {
+function ChatWindow({ messages, isLoading, selectedCharacter, animationsEnabled = true }) {
     const messagesEndRef = useRef(null);
+    const { mood, setMood } = useAvatarMood(5000); // Reset to neutral after 5s
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -11,6 +15,17 @@ function ChatWindow({ messages, isLoading, selectedCharacter }) {
     useEffect(() => {
         scrollToBottom();
     }, [messages, isLoading]);
+
+    // Detect mood from last user message
+    useEffect(() => {
+        if (messages.length > 0 && animationsEnabled) {
+            const lastMessage = messages[messages.length - 1];
+            if (lastMessage.role === 'user') {
+                const detectedMood = detectMood(lastMessage.content);
+                setMood(detectedMood);
+            }
+        }
+    }, [messages, animationsEnabled, setMood]);
 
     // Generate particles
     const renderParticles = () => {
@@ -36,7 +51,18 @@ function ChatWindow({ messages, isLoading, selectedCharacter }) {
             </div>
 
             <div className="chat-header">
-                <h1>AniMind Chat</h1>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    {/* Character Avatar with Mood Animation */}
+                    {animationsEnabled && (
+                        <CharacterAvatar
+                            characterId={selectedCharacter}
+                            mood={mood}
+                            isSpeaking={isLoading}
+                            size="medium"
+                        />
+                    )}
+                    <h1>AniMind Chat</h1>
+                </div>
             </div>
 
             <div className="chat-messages">
