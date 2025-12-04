@@ -39,6 +39,7 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;antigravity&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -70,6 +71,8 @@
       <workItem from="1764613571218" duration="101000" />
       <workItem from="1764673464203" duration="4500000" />
       <workItem from="1764761974160" duration="5343000" />
+      <workItem from="1764782717589" duration="197000" />
+      <workItem from="1764836611808" duration="751000" />
     </task>
     <servers />
   </component>
