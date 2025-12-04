@@ -11,7 +11,7 @@ function DeveloperInfo() {
 
                 <div className="developer-links">
                     <a
-                        href="https://github.com/ayushmishra"
+                        href="https://github.com/Ayush95697/AniMind-AI"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="developer-link"
@@ -22,7 +22,7 @@ function DeveloperInfo() {
                         </svg>
                     </a>
                     <a
-                        href="https://linkedin.com/in/ayushmishra"
+                        href="https://www.linkedin.com/in/ayush-mishra-183b61275/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="developer-link"

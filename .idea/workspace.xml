@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a54ecd55-c93c-4ac1-81b3-900f65c12fc9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/CharacterSelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CharacterSelector.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/ChatWindow.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ChatWindow.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles/animations.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles/animations.css" afterDir="false" />
-    </list>
+    <list default="true" id="a54ecd55-c93c-4ac1-81b3-900f65c12fc9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +72,7 @@
       <workItem from="1764761974160" duration="5343000" />
       <workItem from="1764782717589" duration="197000" />
       <workItem from="1764836611808" duration="751000" />
-      <workItem from="1764863563052" duration="1713000" />
+      <workItem from="1764863563052" duration="3087000" />
     </task>
     <servers />
   </component>
