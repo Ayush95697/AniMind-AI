@@ -79,7 +79,7 @@ def get_llm() -> ChatGoogleGenerativeAI:
     # LangChain's ChatGoogleGenerativeAI reads the key from environment,
     # so we don't need to pass it manually.
     llm = ChatGoogleGenerativeAI(
-        model="gemini-1.5-flash",  # <--- UPDATED HERE
+        model="gemini-pro",  # <--- UPDATED HERE
         temperature=0.7,
     )
 
