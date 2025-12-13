@@ -4,6 +4,7 @@ import ChatWindow from './components/ChatWindow';
 import MessageInput from './components/MessageInput';
 import { sendMessage } from './api/chatClient';
 import usePersistentState from './hooks/usePersistentState';
+import InitializationScreen from './components/InitializationScreen';
 import './styles/theme.css';
 import './styles/app.css';
 import './styles/chat-enhancements.css';
@@ -11,6 +12,7 @@ import './styles/sidebar-components.css';
 import './styles/sound.css';
 
 function App() {
+    const [isSystemReady, setIsSystemReady] = useState(false);
     const [selectedCharacter, setSelectedCharacter] = useState(null);
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -49,6 +51,10 @@ function App() {
 
     return (
         <div className="app-container">
+            {!isSystemReady && (
+                <InitializationScreen onSystemReady={() => setIsSystemReady(true)} />
+            )}
+
             <CharacterSelector
                 selectedCharacter={selectedCharacter}
                 onSelectCharacter={setSelectedCharacter}
