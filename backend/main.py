@@ -78,9 +78,11 @@ def get_llm() -> ChatGoogleGenerativeAI:
 
     # LangChain's ChatGoogleGenerativeAI reads the key from environment,
     # so we don't need to pass it manually.
+   
     llm = ChatGoogleGenerativeAI(
-        model="gemini-1.5-flash",
-        temperature=0.7,
+    model="gemini-1.5-flash",  # <--- Use this standard name
+    temperature=0.7,
+    # ...
     )
 
     # if that errors, use this alias instead:
@@ -186,4 +188,3 @@ def chat(request: ChatRequest):
             status_code=500,
             content={"error": f"An error occurred: {str(e)}"}
         )
-
