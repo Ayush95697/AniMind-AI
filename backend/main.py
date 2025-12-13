@@ -80,9 +80,8 @@ def get_llm() -> ChatGoogleGenerativeAI:
     # so we don't need to pass it manually.
    
     llm = ChatGoogleGenerativeAI(
-    model="gemini-1.5-flash",  # <--- CHANGE TO THIS
+    model="gemini-1.5-flash-001",  # <--- Try this specific version string
     temperature=0.7,
-    # ... rest of your code
     )
 
     # if that errors, use this alias instead:
