@@ -16,7 +16,7 @@ const POLLING_INTERVAL = 3000; // 3 seconds
 const TIMEOUT_DURATION = 150000; // 2.5 minutes
 
 // Use environment variable or default to localhost, same logic as chatClient usually
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
 // NOTE: Ideally this comes from a shared config or .env
 
 const InitializationScreen = ({ onSystemReady }) => {
@@ -44,7 +44,7 @@ const InitializationScreen = ({ onSystemReady }) => {
         // but since the User mentioned Render Deployment, I should be careful.
         // However, the `sendMessage` api likely handles this. 
         // I'll make a direct fetch to the root "/" endpoint.
-        return "http://127.0.0.1:8000";
+        return API_BASE_URL;
     };
 
     const backendUrl = getBackendUrl();
